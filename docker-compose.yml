@@ -1,0 +1,16 @@
+services:
+  dsa-assistant:
+    build: .
+    container_name: dsa-backend-api
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    # This tells Docker to start the FastAPI server automatically
+    command: python main.py
+    # This line is MAGIC: It lets the Docker container talk to
+    # the Ollama service running on your Arch Linux host.
+    network_mode: "host"
+    tty: true
+    stdin_open: true
+    restart: always
