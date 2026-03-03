@@ -91,29 +91,65 @@ watch -n 0.5 nvidia-smi
 
     Orphan Containers: Run docker compose down --remove-orphans to clean up old sessions.
 
-##  INSTRUCTION: INITIAL SETUP FOR ASSISTANT␍
- Since this project was developed on Arch Linux and uses Docker, follow these steps to get it running on **Windows**. ### **Step 1: Install Prerequisites**1. **Docker Desktop:** [Download here](https://www.docker.com/products/docker-desktop/). Ensure **WSL 2** is enabled during install. 2. **Ollama:** [Download here](https://ollama.com/download/windows). After installing, open your terminal and run: ```bash ollama run llama3.2␍
-Step 2: Fix Windows Networking (Crucial)␍
-By default, Ollama only listens to your local computer. We need to "open the door" so the Docker container can talk to it.␍
-1.	Set Environment Variable:␍
-o	Search for "Edit the system environment variables" in Windows Start.␍
-o	Click Environment Variables.␍
-o	Under 'User variables', click New.␍
-o	Variable name: OLLAMA_HOST␍
-o	Variable value: 0.0.0.0:11434␍
-1.	Restart Ollama: Right-click the Ollama icon in your System Tray (near the clock), click Quit, and then restart Ollama from the Start Menu.␍
+Windows Setup Guide: DSA RAG Assistant
 
-Step 3: Setup Environment Variables␍
-Create a file named .env in the root folder of this project (where main.py is). Paste the following:␍
-Code snippet␍
-PINECONE_API_KEY=your_actual_key_here␍
-PINECONE_INDEX_NAME=your_actual_index_name␍
-# Use this exact URL for Windows Docker Desktop␍
-OLLAMA_URL=[http://host.docker.internal:11434](http://host.docker.internal:11434)␍
-␍
-Step 4: Launch the System␍
-Open a terminal (PowerShell or CMD) in the project folder and run:␍
-Bash␍
-# 1. Build the Docker Image docker compose build  # 2. Start the Assistant docker compose up ␍
-The API is live when you see Uvicorn running on http://0.0.0.0:8000. Test it here: http://localhost:8000/docs␍
-␍
+Since this project was developed on Arch Linux and uses Docker, follow these steps to get it running on Windows 10/11.
+Step 1: Install Prerequisites
+
+    Docker Desktop: Download here. Ensure WSL 2 is enabled during the installation process.
+
+    Ollama: Download here.
+
+    Pull the Model: Open PowerShell and run the following command to download the brain:
+    PowerShell
+
+    ollama run llama3.2
+
+Step 2: Fix Windows Networking (Crucial)
+
+By default, Ollama only listens to the local host. To allow the Docker container to talk to the Windows host, you must "open the door."
+
+    Set Environment Variable:
+
+        Search for "Edit the system environment variables" in the Windows Start Menu.
+
+        Click Environment Variables.
+
+        Under User variables, click New.
+
+        Variable name: OLLAMA_HOST
+
+        Variable value: 0.0.0.0:11434
+
+    Restart Ollama: Right-click the Ollama icon in your System Tray (near the clock), click Quit, and then restart Ollama from the Start Menu to apply the changes.
+
+Step 3: Setup Environment Variables
+
+Create a file named .env in the root folder of the project (where docker-compose.yml is located). Paste the following lines, replacing the placeholders with your actual keys:
+Plaintext
+
+PINECONE_API_KEY=your_actual_key_here
+PINECONE_INDEX_NAME=your_actual_index_name
+
+# Use this exact URL for Windows Docker Desktop
+OLLAMA_URL=http://host.docker.internal:11434
+
+Step 4: Launch the System
+
+Open a terminal (PowerShell or Windows Terminal) in the project folder and run:
+
+    Build the Docker Image:
+    PowerShell
+
+    docker compose build
+
+    Start the Assistant:
+    PowerShell
+
+    docker compose up
+
+Step 5: Verify the Connection
+
+The backend is live when you see the logs indicating Uvicorn is running on http://0.0.0.0:8000.
+
+    API Documentation: You can test the endpoints directly at http://localhost:8000/docs.
