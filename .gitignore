@@ -4,6 +4,10 @@ __pycache__/
 .idea/
 .vscode/
 *.pyc
+
+# Local progress and temporary files
 upload_progress.json
 test_api.key
-.~lock.test_api.key#
+.~lock.*
+*.docx
+*.pdf
