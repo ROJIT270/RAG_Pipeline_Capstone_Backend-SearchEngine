@@ -91,14 +91,16 @@ watch -n 0.5 nvidia-smi
 
     Orphan Containers: Run docker compose down --remove-orphans to clean up old sessions.
 
-Windows Setup Guide: DSA RAG Assistant
+###############################################
+###############################################
+IMPORTANT: Windows Setup Guide: DSA RAG Assistant
 
 Since this project was developed on Arch Linux and uses Docker, follow these steps to get it running on Windows 10/11.
 Step 1: Install Prerequisites
 
-    Docker Desktop: Download here. Ensure WSL 2 is enabled during the installation process.
+    Docker Desktop: https://www.docker.com/products/docker-desktop/. Ensure WSL 2 is enabled during the installation process.
 
-    Ollama: Download here.
+    Ollama: https://ollama.com/download/windows.
 
     Pull the Model: Open PowerShell and run the following command to download the brain:
     PowerShell
